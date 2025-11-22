@@ -325,3 +325,23 @@ form button:hover {
     width: 1000px;
   }
 }
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.social a {
+  text-decoration: none;
+}
+
+.social img {
+  width: 40px;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+.social img:hover {
+  transform: scale(1.2);
+}

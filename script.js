@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "date": "2025-22-11",
       "summary": "Ben Kimim?",
       "cover": "assets/kimimben.jpg",
-       "content": "<p>Ben 14 yşinda bir yazılım öğrenmeye çaışan biriyim. Birsürü oyun denemem,Site denemem ve uygulama denemelerim oldu. Ama hala kendimi geliştirmeye çalışıyorum Ve burda yaptigim bütün Oyunalrımı,sitelerimi ve kodlarımı burda paylaşacağım.</p><img src='assets/foto1.jpg' style='width:100%; border-radius:10px;'><img src='assets/foto2.jpg' style='width:100%; border-radius:10px;'>",
+       "content": "<p>Ben Eyyüp Mutlu. 2011 doğumluyum, yani 14 yaşındayım. Kendimi geliştirmeyi seven, meraklı ve bir şeyler üretmekten keyif alan biriyim. Oyun tasarımı, kod yazma ve dijital projelerle uğraşmak hem beni eğlendiriyor hem de ileride yapmak istediğim şeyler için temel oluşturuyor. Büyük laflar etmeyi sevmem ama öğrenmeye karşı istekliliğime güvenirim. Bir sorunla karşılaştığımda vazgeçmek yerine çözüm aramayı tercih ederim. Tasarımda sade ve düzenli bir tarzı benimsiyorum. Yolun daha çok başındayım ama küçük adımların zamanla büyük işler ortaya çıkaracağına inanıyorum.</p><img src='assets/jpg.jpg' style='width:30%; margin-left:10px; border-radius:10px;'><img src='assets/NATCATt.png' style='width:30%; margin-left:10px; border-radius:10px;'>",
       "link": "post.html?id=1",
       "linkText": "Daha Fazla."
     },
