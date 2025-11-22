@@ -2,9 +2,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Blog verileri
   const posts = [
-    { id: 1, title: "Ben Kimim?", date: "2025-22-11", summary: "Ben Kimim?", cover: "assets/kimimben.jpg", content: "<p>Ben 14 yşinda bir yazılım öğrenmeye çaışan biriyim. Birsürü oyun denemem,Site denemem ve uygulama denemelerim oldu. Ama hala kendimi geliştirmeye çalışıyorum Ve burda yaptigim bütün Oyunalrımı,sitelerimi ve kodlarımı burda paylaşacağım.</p><img src='assets/foto1.jpg' style='width:100%; border-radius:10px;'>"},
-    { id: 2, title: "Başlık 2", date: "2025-01-15", summary: "Açıklama 2", cover: "assets/foto2.jpg", content: "<p>Text 2</p><img src='assets/foto2.jpg' style='width:100%; border-radius:10px;'>"}
-    // İstediğin kadar post ekleyebilirsin
+     {
+      "id": 1,
+      "title": "Ben Kimim?",
+      "date": "2025-22-11",
+      "summary": "Ben Kimim?",
+      "cover": "assets/kimimben.jpg",
+       "content": "<p>Ben 14 yşinda bir yazılım öğrenmeye çaışan biriyim. Birsürü oyun denemem,Site denemem ve uygulama denemelerim oldu. Ama hala kendimi geliştirmeye çalışıyorum Ve burda yaptigim bütün Oyunalrımı,sitelerimi ve kodlarımı burda paylaşacağım.</p><img src='assets/foto1.jpg' style='width:100%; border-radius:10px;'><img src='assets/foto2.jpg' style='width:100%; border-radius:10px;'>",
+      "link": "post.html?id=1",
+      "linkText": "Daha Fazla."
+    },
+     {
+    id: 2,
+    title: "Maze Naze",
+    date: "2025-11-22",
+    summary: "Yaptığım Maze Naze Oyununu İndir.",
+    cover: "assets/MazeNaze.jpg",
+    content: `
+      <p>İlk Yaptığım Oyunlardan Olan Maze Naze'yi İndir!</p>
+
+      <img src="assets/foto1.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="assets/foto2.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="assets/foto3.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="assets/foto4.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+
+      <p style="margin-top:15px;">
+        <a href="assets/proje-dosyasi.zip" download style="font-weight:bold; color:#0077ff;">
+          📁 Proje dosyalarını indir (ZIP)
+        </a>
+      </p>
+    `,
+    link: "post.html?id=2",
+    linkText: "Oyunu İndir!"
+  }
+
   ];
 
   // ---------- Blog Listeleme ----------
