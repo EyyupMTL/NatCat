@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ana Sayfa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">    <nav>Nat Cat</nav></a>
+  <nav id="nav-menu">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="about.html">Hakkımda</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Bize Ulaşın</a>
+  </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- Sabit üstte buton -->
+<a href="contact.html" class="contact-button">Bize Ulaşın</a>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Nat Cat Blog'a Hoş Geldin!</h1>
+    <p>Burda Nat Cat ile ilgili her şeyi bulabilirsin, geri bildirim verebilirsin, Beta ve Full oyunları yükleyebilir ve oynayabilirsin!!!</p>
+    <a class="button" href="blog.html">Bloga Git</a>
+
+    <!-- Sadece PC'de görünen görsel -->
+    <img src="assets/hero-pc.jpg" alt="Hero Görsel" class="hero-pc-img">
+  </div>
+</div>
+
+ 
+  <div class="container">
+  <h2 class="section-title">Sabitlenenler : </h2>
+  <div id="blog-grid" class="blog-grid"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('index-posts.json')
+    .then(response => response.json())
+    .then(data => {
+      const blogGrid = document.getElementById('blog-grid');
+      data.posts.forEach(post => {
+        const card = document.createElement('div');
+        card.classList.add('blog-card');
+        card.innerHTML = `
+          <img src="${post.cover}" alt="${post.title}" class="cover">
+          <h3>${post.title}</h3>
+          <p>${post.summary}</p>
+          <a href="${post.link}">${post.linkText}</a>
+        `;
+        blogGrid.appendChild(card);
+      });
+    })
+    .catch(err => console.error("JSON yüklenemedi:", err));
+});
+</script>
+
+<footer>© 2025 Senin İsmin</footer>
+
+</body>
+</html>

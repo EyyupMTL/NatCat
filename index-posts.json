@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Başlık",
+      "date": "0000-00-00",
+      "summary": "Açıklama",
+      "cover": "assets/foto.jpg",
+      "content": "<p>textweds</p><img src='assets/foto1.jpg' style='width:100%; border-radius:10px;'><img src='assets/foto2.jpg' style='width:100%; border-radius:10px;'>",
+      "link": "post.html?id=1",
+      "linkText": "Dahatgvazla"
+    }
+   
+  ]
+}

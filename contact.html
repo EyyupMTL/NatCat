@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>İletişim</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">Nat Cat</a>
+   <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="about.html">Hakkımda</a>
+    <a href="blog.html">Blog</a>
+    <!-- Sabit Üst Buton -->
+<a href="contact.html" class="contact-button">Bize Ulaşın</a>
+
+  </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<main>
+  <section class="contact">
+    <h1>Bize Ulaşın</h1>
+    <form action="https://formspree.io/f/xanpqdgg" method="POST">
+      <label for="name">Adınız:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">E-posta:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Mesajınız:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Gönder</button>
+    </form>
+  </section>
+</main>
+
+<footer>© 2025 Senin İsmin</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

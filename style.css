@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background:#0c0f16;
+  color:white;
+  overflow-x:hidden;
+}
+
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  z-index:999;
+}
+
+header a.logo {
+  color:white;
+  font-size:28px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+nav a {
+  color:#ddd;
+  margin-left:30px;
+  text-decoration:none;
+  transition:0.3s;
+}
+nav a:hover {
+  color:#fff;
+}
+
+.hero {
+  height:100vh;
+  background:url("assets/bg.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  padding-left:120px;
+}
+
+.hero-content {
+  max-width:600px;
+  animation:fadeInUp 1.5s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(40px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.hero h1 {
+  font-size:60px;
+  font-weight:700;
+}
+
+.hero p {
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.6;
+  max-width:500px;
+}
+
+.button {
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 25px;
+  background:#ff0055;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  transition:0.3s;
+}
+.button:hover {
+  background:#e0004c;
+}
+
+.container {
+  padding:120px 60px;
+}
+
+.section-title {
+  font-size:36px;
+  margin-bottom:30px;
+  text-align:center;
+  animation:fadeInUp 1s;
+}
+
+/* Blog Kartları */
+.blog-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  gap:30px;
+}
+
+.blog-card {
+  background:#141822;
+  padding:20px;
+  border-radius:10px;
+  transition:0.3s;
+}
+.blog-card:hover {
+  transform:translateY(-5px);
+  background:#1b2130;
+}
+
+.blog-card h3 { margin-bottom:10px; }
+.blog-card a { color:#ff0055; text-decoration:none; }
+
+/* Post sayfası */
+.post-container {
+  max-width:800px;
+  margin:auto;
+  padding:120px 20px;
+}
+
+.post-container h1 {
+  margin-bottom:20px;
+}
+
+footer {
+  text-align:center;
+  padding:20px;
+  background:#0a0c13;
+  margin-top:50px;
+}
+.blog-card img.cover {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+form {
+  max-width: 600px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+form input, form textarea {
+  margin-bottom: 20px;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+form button {
+  width: 150px;
+  padding: 12px;
+  background:#ff0055;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+form button:hover {
+  background:#e0004c;
+}
+
+#form-status {
+  margin-top: 15px;
+  font-weight: 600;
+}
+/* Header arama kutusu */
+.header-search {
+  width: 500px;           /* Daha küçük */
+  max-width: 90%;         /* Mobil uyumlu */
+  padding: 6px 10px;      /* Daha küçük padding */
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;        /* Daha küçük yazı */
+  text-align: left;     /* Yazıyı ortala */
+  margin: 0 20px;         /* Header içinde biraz boşluk */
+}
+
+/* Header flex düzeni */
+header {
+  display: flex;
+  justify-content: space-between;  /* Logo ve nav arası boşluk */
+  align-items: center;             /* Dikey ortala */
+  padding: 10px 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 120px;
+  background: url("assets/bg.jpg") center/cover no-repeat;
+}
+
+.hero-content {
+  max-width: 600px;
+  z-index: 2;
+}
+
+/* Hero içi PC görseli */
+.hero-pc-img {
+  position: absolute;   /* metnin arkasına veya yanına yerleştirmek için */
+  right: 50px;
+  bottom: 20px;
+  width: 1000px;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Mobilde gizle */
+@media (max-width: 768px) {
+  .hero-pc-img {
+    display: none;
+  }
+}
