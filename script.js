@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${post.cover}" alt="${post.title}" class="cover">
             <h3>${post.title}</h3>
             <p>${post.summary}</p>
-            <a href="post.html?id=${post.id}">Devamını Oku</a>
+            <a href="post.html?id=${post.id}">${post.linkText}</a>
           `;
           blogGrid.appendChild(card);
         });
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <img src="${post.cover}" alt="${post.title}" class="cover">
               <h3>${post.title}</h3>
               <p>${post.summary}</p>
-              <a href="post.html?id=${post.id}">Devamını Oku</a>
+              <a href="post.html?id=${post.id}">${post.linkText}</a>
             `;
             blogGrid.appendChild(card);
           });
