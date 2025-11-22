@@ -2,10 +2,10 @@
   "posts": [
     {
       "id": 1,
-      "title": "Başlıyghbnk",
-      "date": "0000-00-00",
-      "summary": "Açıklama",
-      "cover": "assets/foto.jpg",
+      "title": "Ben Kimim?",
+      "date": "2025-22-11",
+      "summary": "Ben Kimim?",
+      "cover": "assets/kimimben.jpg",
       "content": "<p>textweds</p><img src='assets/foto1.jpg' style='width:100%; border-radius:10px;'><img src='assets/foto2.jpg' style='width:100%; border-radius:10px;'>",
       "link": "post.html?id=1",
       "linkText": "Dahatgvazla"
