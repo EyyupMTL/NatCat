@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     title: "Maze Naze",
     date: "2025-11-22",
     summary: "Yaptığım Maze Naze Oyununu İndir.",
-    cover: "assets/MazeNaze.jpg",
+    cover: "assets/mazenaze1.jpg",
     content: `
       <p>İlk Yaptığım Oyunlardan Olan Maze Naze'yi İndir!    İndirdikten Sonra Zipin İçinden Çıkar</p>
 
