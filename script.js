@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     summary: "Yaptığım Maze Naze Oyununu İndir.",
     cover: "assets/MazeNaze.jpg",
     content: `
-      <p>İlk Yaptığım Oyunlardan Olan Maze Naze'yi İndir!</p>
+      <p>İlk Yaptığım Oyunlardan Olan Maze Naze'yi İndir!    İndirdikten Sonra Zipin İçinden Çıkar</p>
 
       <img src="assets/foto1.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
       <img src="assets/foto2.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src="assets/foto4.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
 
       <p style="margin-top:15px;">
-        <a href="assets/proje-dosyasi.zip" download style="font-weight:bold; color:#0077ff;">
-          📁 Proje dosyalarını indir (ZIP)
+        <a href="assets/MazeNaze.zip" download style="font-weight:bold; color:#0077ff;">
+          Maze Naze indir (ZIP)
         </a>
       </p>
     `,
