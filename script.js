@@ -87,5 +87,69 @@ document.addEventListener('DOMContentLoaded', () => {
       if(status) status.textContent = "Mailiniz açılıyor...";
     });
   }
+// ---------- Yorum Sistemi ----------
+const commentForm = document.getElementById("comment-form");
+const commentsDiv = document.getElementById("comments");
+
+if(commentForm){
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id'));
+
+  // YORUMLARI YÜKLE
+  function loadComments(){
+    const saved = JSON.parse(localStorage.getItem("comments_"+id)) || [];
+    commentsDiv.innerHTML = "";
+
+    if(saved.length === 0){
+      commentsDiv.innerHTML = "<p>Henüz yorum yok.</p>";
+      return;
+    }
+
+    saved.forEach(c => {
+      const div = document.createElement("div");
+      div.classList.add("comment");
+      div.innerHTML = `
+        <p><strong>${c.name}</strong> <em>${c.date}</em></p>
+        <p>${c.text}</p>
+        <hr>
+      `;
+      commentsDiv.appendChild(div);
+    });
+  }
+
+  loadComments(); // Sayfa açılınca yükle
+
+  // YORUM GÖNDER
+  commentForm.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const name = document.getElementById("comment-name").value.trim();
+    const text = document.getElementById("comment-text").value.trim();
+    const date = new Date().toLocaleString();
+
+    if(text === "") return;
+
+    const comment = {
+      name: name || "Anonim",
+      text,
+      date
+    };
+
+    const saved = JSON.parse(localStorage.getItem("comments_"+id)) || [];
+    saved.push(comment);
+    localStorage.setItem("comments_"+id, JSON.stringify(saved));
+
+    commentForm.reset();
+    loadComments();
+  });
+}
+saved.push(comment);
+localStorage.setItem("comments_" + id, JSON.stringify(saved));
+
+commentForm.reset();
+loadComments();
+
+// yeni yorumu göstermek için otomatik en alta kaydır
+commentsDiv.scrollTop = commentsDiv.scrollHeight;
 
 });
