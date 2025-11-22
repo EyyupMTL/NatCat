@@ -55,11 +55,7 @@ nav a:hover {
   max-width:600px;
   animation:fadeInUp 1.5s ease;
 }
-.hero-pc-img {
-  width: 400px;           /* Görsel genişliği */
-  border-radius: 10px;
-  animation: none;        /* Hareketi kapat */
-}
+      /* Hareketi kapat */
 
 @keyframes fadeInUp {
   from { opacity:0; transform:translateY(40px); }
@@ -238,7 +234,7 @@ header {
 }
 
 /* Mobilde gizle */
-@media (max-width: 768px) {
+@media (max-width: 1700px) {
   .hero-pc-img {
     display: none;
   }
