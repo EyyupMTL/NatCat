@@ -487,3 +487,106 @@ form button:hover {
   background: #ff0055;
   border-radius: 10px;
 }
+/* ------------------------------------------------------------ */
+/*    GLOBAL OTOMATİK BOYUTLANDIRMA – FLUID RESPONSIVE SYSTEM   */
+/* ------------------------------------------------------------ */
+
+/* Yazılar otomatik ölçeklensin */
+body {
+  font-size: clamp(14px, 1.4vw, 18px);
+}
+
+/* Başlıklar otomatik büyüme */
+h1 {
+  font-size: clamp(28px, 6vw, 60px);
+}
+h2 {
+  font-size: clamp(22px, 4.5vw, 36px);
+}
+h3 {
+  font-size: clamp(18px, 3.5vw, 28px);
+}
+h4, h5, h6 {
+  font-size: clamp(16px, 3vw, 22px);
+}
+
+/* Paragraflar */
+p {
+  font-size: clamp(14px, 3.3vw, 18px);
+}
+
+/* Navigasyon */
+nav a {
+  font-size: clamp(12px, 2vw, 18px);
+}
+
+/* Hero genel padding */
+.hero {
+  padding-left: clamp(20px, 10vw, 120px);
+}
+
+/* Hero başlık & paragraf */
+.hero h1 {
+  font-size: clamp(32px, 7vw, 60px);
+}
+.hero p {
+  font-size: clamp(14px, 3.2vw, 18px);
+}
+
+/* Butonlar */
+.button,
+#comment-form button,
+form button {
+  padding: clamp(10px, 1.5vw, 14px) clamp(20px, 2vw, 25px);
+  font-size: clamp(14px, 2.5vw, 16px);
+}
+
+/* Container padding */
+.container {
+  padding: clamp(60px, 12vw, 120px) clamp(20px, 8vw, 60px);
+}
+
+/* Blog kart başlıkları */
+.blog-card h3 {
+  font-size: clamp(18px, 3.5vw, 24px);
+}
+
+/* Blog kart padding */
+.blog-card {
+  padding: clamp(15px, 2vw, 20px);
+}
+
+/* Post container */
+.post-container {
+  padding: clamp(80px, 12vw, 120px) clamp(10px, 4vw, 20px);
+}
+
+/* Form elemanları */
+form input,
+form textarea,
+#comment-form input,
+#comment-form textarea {
+  padding: clamp(10px, 2vw, 14px);
+  font-size: clamp(14px, 2.5vw, 16px);
+}
+
+/* Yorum kutusu */
+.comment {
+  padding: clamp(10px, 2vw, 15px);
+}
+
+/* Sosyal medya ikonları */
+.social img {
+  width: clamp(28px, 7vw, 40px);
+}
+
+/* Header padding */
+header {
+  padding: clamp(10px, 4vw, 20px) clamp(20px, 6vw, 60px);
+}
+
+/* Header search */
+.header-search {
+  font-size: clamp(12px, 2.5vw, 16px);
+  padding: clamp(6px, 1.5vw, 10px) clamp(10px, 2vw, 14px);
+}
