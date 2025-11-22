@@ -9,17 +9,8 @@
       "link": "post.html?id=1",
       "linkText": "Daha Fazla."
     },
-    {
-      "id": 2,
-      "title": "Maze Naze",
-      "date": "2025-22-11",
-      "summary": "Yaptığım Maze Naze Oyununu İndir.",
-      "cover": "assets/mazenaze1.png",
-      "link": "post.html?id=2",
-      "linkText": "Oyunu İndir!"
-    },
-    {
-  "id": 3,
+     {
+  "id": 2,
   "title": "Oyununu Yayınla!!",
   "date": "2025-22-11",
   "summary": "Benimle İletişime Geç Ve Oyununu Yayınla!!",
@@ -28,7 +19,17 @@
 
 "link": "post.html?id=3",
   "linkText": "Bilgi Edin."
-}
+},
+    {
+      "id": 3,
+      "title": "Maze Naze",
+      "date": "2025-22-11",
+      "summary": "Yaptığım Maze Naze Oyununu İndir.",
+      "cover": "assets/mazenaze1.png",
+      "link": "post.html?id=2",
+      "linkText": "Oyunu İndir!"
+    }
+   
    
   ]
 }
