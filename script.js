@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     content: `
       <p>İlk Yaptığım Oyunlardan Olan Maze Naze'yi İndir!    İndirdikten Sonra Zipin İçinden Çıkar</p>
 
-      <img src="assets/mazenaze1.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="https://xerothermic-indigo-hix7ukhpp2.edgeone.app/mazenaze1.png" style="width:100%; border-radius:10px; margin-bottom:10px;">
       <img src="assets/mazenaze2.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
       <img src="assets/mazenaze3.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
       <img src="assets/mazenaze4.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
