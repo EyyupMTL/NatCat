@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
     content: `
       <p>İlk Yaptığım Oyunlardan Olan Maze Naze'yi İndir!    İndirdikten Sonra Zipin İçinden Çıkar</p>
 
-      <img src="assets/foto1.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
-      <img src="assets/foto2.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
-      <img src="assets/foto3.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
-      <img src="assets/foto4.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="assets/mazenaze1.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="assets/mazenaze2.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="assets/mazenaze3.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      <img src="assets/mazenaze4.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
 
       <p style="margin-top:15px;">
         <a href="assets/MazeNaze.zip" download style="font-weight:bold; color:#0077ff;">
