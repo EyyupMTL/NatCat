@@ -143,13 +143,5 @@ if(commentForm){
     loadComments();
   });
 }
-saved.push(comment);
-localStorage.setItem("comments_" + id, JSON.stringify(saved));
-
-commentForm.reset();
-loadComments();
-
-// yeni yorumu göstermek için otomatik en alta kaydır
-commentsDiv.scrollTop = commentsDiv.scrollHeight;
 
 });
