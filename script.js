@@ -1,96 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Blog verileri
-  const posts = [
-     {
-      "id": 1,
-      "title": "Ben Kimim?",
-      "date": "2025-22-11",
-      "summary": "Ben Kimim?",
-      "cover": "assets/kimimben.jpg",
-       "content": "<p>Ben Eyyüp Mutlu. 2011 doğumluyum, yani 14 yaşındayım. Kendimi geliştirmeyi seven, meraklı ve bir şeyler üretmekten keyif alan biriyim. Oyun tasarımı, kod yazma ve dijital projelerle uğraşmak hem beni eğlendiriyor hem de ileride yapmak istediğim şeyler için temel oluşturuyor. Büyük laflar etmeyi sevmem ama öğrenmeye karşı istekliliğime güvenirim. Bir sorunla karşılaştığımda vazgeçmek yerine çözüm aramayı tercih ederim. Tasarımda sade ve düzenli bir tarzı benimsiyorum. Yolun daha çok başındayım ama küçük adımların zamanla büyük işler ortaya çıkaracağına inanıyorum.</p><img src='assets/jpg.jpg' style='width:30%; margin-left:10px; border-radius:10px;'><img src='assets/NATCATt.png' style='width:30%; margin-left:10px; border-radius:10px;'>",
-      "link": "post.html?id=1",
-      "linkText": "Daha Fazla."
-    },
-     {
-    id: 2,
-    title: "Maze Naze",
-    date: "2025-11-22",
-    summary: "Yaptığım Maze Naze Oyununu İndir.",
-    cover: "assets/mazenaze1.png",
-    content: `
-      <p>İlk Yaptığım Oyunlardan Olan Maze Naze'yi İndir!    İndirdikten Sonra Zipin İçinden Çıkar</p>
+  // ---------- JSON'dan Veriyi Çek ----------
+  fetch('posts.json')
+    .then(response => response.json())
+    .then(posts => {
 
-      <img src="assets/mazenaze1.png" style="width:100%; border-radius:10px; margin-bottom:10px;">
-      <img src="assets/mazenaze2.png" style="width:100%; border-radius:10px; margin-bottom:10px;">
-      <img src="assets/mazenaze3.png" style="width:100%; border-radius:10px; margin-bottom:10px;">
-      <img src="assets/mazenaze4.png" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      // ---------- Blog Listeleme ----------
+      const blogGrid = document.getElementById('blog-grid') || document.getElementById('blog-list');
+      if(blogGrid){
+        posts.forEach(post => {
+          const card = document.createElement('div');
+          card.classList.add('blog-card');
+          card.innerHTML = `
+            <img src="${post.cover}" alt="${post.title}" class="cover">
+            <h3>${post.title}</h3>
+            <p>${post.summary}</p>
+            <a href="post.html?id=${post.id}">Devamını Oku</a>
+          `;
+          blogGrid.appendChild(card);
+        });
+      }
 
-      <p style="margin-top:15px;">
-        <a href="assets/MazeNaze.zip" download style="font-weight:bold; color:#0077ff;">
-          Maze Naze indir (ZIP)
-        </a>
-      </p>
-    `,
-    link: "post.html?id=2",
-    linkText: "Oyunu İndir!"
-  }
+      // ---------- Arama ----------
+      const searchInput = document.getElementById("blog-search");
+      if(searchInput){
+        searchInput.addEventListener("input", () => {
+          const query = searchInput.value.toLowerCase();
+          const filtered = posts.filter(post => post.title.toLowerCase().includes(query));
+          blogGrid.innerHTML = "";
+          filtered.forEach(post => {
+            const card = document.createElement('div');
+            card.classList.add('blog-card');
+            card.innerHTML = `
+              <img src="${post.cover}" alt="${post.title}" class="cover">
+              <h3>${post.title}</h3>
+              <p>${post.summary}</p>
+              <a href="post.html?id=${post.id}">Devamını Oku</a>
+            `;
+            blogGrid.appendChild(card);
+          });
+        });
+      }
 
-  ];
+      // ---------- Post Sayfası ----------
+      const postContainer = document.querySelector('.post-container');
+      if(postContainer){
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get('id'));
+        const post = posts.find(p => p.id === id);
+        if(post){
+          postContainer.innerHTML = `
+            <h1>${post.title}</h1>
+            <p><em>${post.date}</em></p>
+            ${post.content}
+          `;
+        } else {
+          postContainer.innerHTML = "<p>Gönderi bulunamadı.</p>";
+        }
+      }
 
-  // ---------- Blog Listeleme ----------
-  const blogGrid = document.getElementById('blog-grid') || document.getElementById('blog-list');
-  if(blogGrid){
-    posts.forEach(post => {
-      const card = document.createElement('div');
-      card.classList.add('blog-card');
-      card.innerHTML = `
-        <img src="${post.cover}" alt="${post.title}" class="cover">
-        <h3>${post.title}</h3>
-        <p>${post.summary}</p>
-        <a href="post.html?id=${post.id}">Devamını Oku</a>
-      `;
-      blogGrid.appendChild(card);
-    });
-  }
-
-  // ---------- Arama ----------
-  const searchInput = document.getElementById("blog-search");
-  if(searchInput){
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
-      const filtered = posts.filter(post => post.title.toLowerCase().includes(query));
-      blogGrid.innerHTML = "";
-      filtered.forEach(post => {
-        const card = document.createElement('div');
-        card.classList.add('blog-card');
-        card.innerHTML = `
-          <img src="${post.cover}" alt="${post.title}" class="cover">
-          <h3>${post.title}</h3>
-          <p>${post.summary}</p>
-          <a href="post.html?id=${post.id}">Devamını Oku</a>
-        `;
-        blogGrid.appendChild(card);
-      });
-    });
-  }
-
-  // ---------- Post Sayfası ----------
-  const postContainer = document.querySelector('.post-container');
-  if(postContainer){
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id'));
-    const post = posts.find(p => p.id === id);
-    if(post){
-      postContainer.innerHTML = `
-        <h1>${post.title}</h1>
-        <p><em>${post.date}</em></p>
-        ${post.content}
-      `;
-    } else {
-      postContainer.innerHTML = "<p>Gönderi bulunamadı.</p>";
-    }
-  }
+    })
+    .catch(err => console.error('JSON yüklenirken hata:', err));
 
   // ---------- Hamburger ----------
   const hamburger = document.getElementById("hamburger");

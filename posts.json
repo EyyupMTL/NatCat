@@ -1,14 +1,22 @@
-{
-  "posts": [
-    {
-      "id": 1,
-      "title": "babalilo",
-      "date": "0000-00-00",
-      "summary": "Açıklama",
-      "cover": "assets/foto.jpg",
-      "content": "<p>text</p><img src='assets/foto1.jpg' style='width:100%; border-radius:10px;'><img src='assets/foto2.jpg' style='width:100%; border-radius:10px;'>",
-      "link": "post.html?id=1",
-      "linkText": "DahaFazla"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "title": "Ben Kimim?",
+    "date": "2025-22-11",
+    "summary": "Ben Kimim?",
+    "cover": "assets/kimimben.jpg",
+    "content": "<p>Ben Eyyüp Mutlu...</p><img src='assets/jpg.jpg' style='width:30%; margin-left:10px; border-radius:10px;'>",
+    "link": "post.html?id=1",
+    "linkText": "Daha Fazla."
+  },
+  {
+    "id": 2,
+    "title": "Maze Naze",
+    "date": "2025-11-22",
+    "summary": "Yaptığım Maze Naze Oyununu İndir.",
+    "cover": "assets/mazenaze1.png",
+    "content": "<p>İlk Yaptığım Oyunlardan...</p>",
+    "link": "post.html?id=2",
+    "linkText": "Oyunu İndir!"
+  }
+]
