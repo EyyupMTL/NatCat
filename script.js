@@ -48,13 +48,59 @@ document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
         const id = parseInt(params.get('id'));
         const post = posts.find(p => p.id === id);
+
         if(post){
-          postContainer.innerHTML = `
-            <h1>${post.title}</h1>
-            <p><em>${post.date}</em></p>
-            ${post.content}
-          `;
-        } else {
+
+          // Post içeriğini geçici div'e yerleştir
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = post.content;
+
+          // İçerideki tüm resimleri al
+          const images = tempDiv.querySelectorAll("img");
+
+          // Sadece yazı içeriği
+          const textOnly = tempDiv.cloneNode(true);
+          textOnly.querySelectorAll("img").forEach(img => img.remove());
+
+         postContainer.innerHTML = `
+  <h1>${post.title}</h1>
+<div style="
+  display:inline-block;
+  padding:6px 12px;
+  border:2px solid #4CAF50;
+  color:#4CAF50;
+  border-radius:8px;
+  margin:5px 0 15px 0;
+  font-size:14px;
+  font-weight:600;
+">
+  Paylaşan: ${post.author}
+</div>
+
+  <!-- Tarih normal -->
+  <p><em>${post.date}</em></p>
+
+  
+   
+
+  <!-- ANA RESİM -->
+  <img src="${post.cover}" id="main-post-image"
+       style="width:100%;border-radius:15px;cursor:pointer;margin-bottom:20px;">
+
+  <!-- Yazılar -->
+  <div id="post-text">
+    ${textOnly.innerHTML}
+  </div>
+
+  <!-- Gizli resimler -->
+  <div id="hidden-images" style="display:none;"></div>
+`;
+
+          // Gizli image alanına resimleri ekle
+          const hiddenDiv = document.getElementById("hidden-images");
+          images.forEach(img => hiddenDiv.appendChild(img));
+        }
+        else {
           postContainer.innerHTML = "<p>Gönderi bulunamadı.</p>";
         }
       }
@@ -87,65 +133,66 @@ document.addEventListener('DOMContentLoaded', () => {
       if(status) status.textContent = "Mailiniz açılıyor...";
     });
   }
-// ---------- Yorum Sistemi ----------
-const commentForm = document.getElementById("comment-form");
-const commentsDiv = document.getElementById("comments");
 
-if(commentForm){
-  const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get('id'));
+  // ---------- Yorum Sistemi ----------
+  const commentForm = document.getElementById("comment-form");
+  const commentsDiv = document.getElementById("comments");
 
-  // YORUMLARI YÜKLE
-  function loadComments(){
-    const saved = JSON.parse(localStorage.getItem("comments_"+id)) || [];
-    commentsDiv.innerHTML = "";
+  if(commentForm){
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
 
-    if(saved.length === 0){
-      commentsDiv.innerHTML = "<p>Henüz yorum yok.</p>";
-      return;
+    function loadComments(){
+      const saved = JSON.parse(localStorage.getItem("comments_" + id)) || [];
+      commentsDiv.innerHTML = "";
+
+      if(saved.length === 0){
+        commentsDiv.innerHTML = "<p>Henüz yorum yok.</p>";
+        return;
+      }
+
+      saved.forEach(c => {
+        const div = document.createElement("div");
+        div.classList.add("comment");
+        div.innerHTML = `
+          <p><strong>${c.name}</strong> <em>${c.date}</em></p>
+          <p>${c.text}</p>
+          <hr>
+        `;
+        commentsDiv.appendChild(div);
+      });
     }
 
-    saved.forEach(c => {
-      const div = document.createElement("div");
-      div.classList.add("comment");
-      div.innerHTML = `
-        <p><strong>${c.name}</strong> <em>${c.date}</em></p>
-        <p>${c.text}</p>
-        <hr>
-      `;
-      commentsDiv.appendChild(div);
+    loadComments();
+
+    commentForm.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const name = document.getElementById("comment-name").value.trim();
+      const text = document.getElementById("comment-text").value.trim();
+      const date = new Date().toLocaleString();
+
+      if(text === "") return;
+
+      const comment = {
+        name: name || "Anonim",
+        text,
+        date
+      };
+
+      const saved = JSON.parse(localStorage.getItem("comments_" + id)) || [];
+      saved.push(comment);
+
+      localStorage.setItem("comments_" + id, JSON.stringify(saved));
+
+      commentForm.reset();
+      loadComments();
     });
   }
 
-  loadComments(); // Sayfa açılınca yükle
-
-  // YORUM GÖNDER
-  commentForm.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const name = document.getElementById("comment-name").value.trim();
-    const text = document.getElementById("comment-text").value.trim();
-    const date = new Date().toLocaleString();
-
-    if(text === "") return;
-
-    const comment = {
-      name: name || "Anonim",
-      text,
-      date
-    };
-
-    const saved = JSON.parse(localStorage.getItem("comments_"+id)) || [];
-    saved.push(comment);
-    localStorage.setItem("comments_"+id, JSON.stringify(saved));
-
-    commentForm.reset();
-    loadComments();
-  });
-}
-
 });
-// ---------- LIGHTBOX (Resim Önizleme + Sağ Sol Buton) ----------
+
+/* ----------------- LIGHTBOX SİSTEMİ ------------------ */
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
@@ -176,30 +223,28 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.style.display = "none";
   }
 
-  // Post içerik yüklendikten sonra resimleri bul
+  // Gizli resimleri al
   setTimeout(() => {
-    const postImages = document.querySelectorAll(".post-container img");
-    images = Array.from(postImages);
+    const hidden = document.querySelectorAll("#hidden-images img");
+    images = Array.from(hidden);
 
-    images.forEach((img, i) => {
-      img.style.cursor = "pointer";
-      img.addEventListener("click", () => openLightbox(i));
-    });
+    const mainImage = document.getElementById("main-post-image");
+
+    if (mainImage && images.length > 0) {
+      mainImage.addEventListener("click", () => openLightbox(0));
+    }
   }, 500);
 
-  // Buton olayları
   rightBtn.addEventListener("click", showNext);
   leftBtn.addEventListener("click", showPrev);
   closeBtn.addEventListener("click", closeLightbox);
 
-  // ESC ile kapatma
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLightbox();
     if (e.key === "ArrowRight") showNext();
     if (e.key === "ArrowLeft") showPrev();
   });
 
-  // Lightbox boş alana tıklayınca kapanır
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeLightbox();
   });
