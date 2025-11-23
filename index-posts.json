@@ -17,7 +17,7 @@
   "cover": "assets/gamethubnail.jpg",
  "content": "<p>Sen de kendi oyununun dünyaya ulaşmasını ister misin? Bu platformda oyununu paylaşabilir, diğer oyuncularla buluşturabilirsin. Oyununu göndermek çok kolay: Aşağıdaki butona tıklayarak benimle iletişime geç ve oyununun yayınlanmasını sağla!</p>\n<p><a href=\"contact.html\" style=\"display:inline-block;margin-top:10px;padding:10px 16px;background:#4CAF50;color:white;border-radius:8px;text-decoration:none;\">İletişime Geç</a></p>",
 
-"link": "post.html?id=3",
+"link": "post.html?id=2",
   "linkText": "Bilgi Edin."
 },
     {
@@ -26,7 +26,7 @@
       "date": "2025-22-11",
       "summary": "Yaptığım Maze Naze Oyununu İndir.",
       "cover": "assets/mazenaze1.png",
-      "link": "post.html?id=2",
+      "link": "post.html?id=3",
       "linkText": "Oyunu İndir!"
     }
    

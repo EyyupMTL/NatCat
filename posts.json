@@ -10,24 +10,24 @@
   "linkText": "Devamını Oku."
 },
 {
-  "id": 3,
+  "id": 2,
   "title": "Oyununu Yayınla!!",
   "date": "2025-22-11",
   "summary": "Benimle İletişime Geç Ve Oyununu Yayınla!!",
   "cover": "assets/gamethubnail.jpg",
  "content": "<p>Sen de kendi oyununun dünyaya ulaşmasını ister misin? Bu platformda oyununu paylaşabilir, diğer oyuncularla buluşturabilirsin. Oyununu göndermek çok kolay: Aşağıdaki butona tıklayarak benimle iletişime geç ve oyununun yayınlanmasını sağla!</p>\n<p><a href=\"contact.html\" style=\"display:inline-block;margin-top:10px;padding:10px 16px;background:#4CAF50;color:white;border-radius:8px;text-decoration:none;\">İletişime Geç</a></p>",
 
-"link": "post.html?id=3",
+"link": "post.html?id=2",
   "linkText": "Bilgi Edin."
 },
  {
-  "id": 2,
+  "id": 3,
   "title": "Maze Naze",
   "date": "2025-11-22",
   "summary": "Yaptığım Maze Naze Oyununu İndir.",
   "cover": "assets/mazenaze1.png",
   "content": "<p>İlk Yaptığım Oyunlardan Birisi Olan Maze Naze'yi İndir (İndirdikten Sonra Zip Dosyasını Ayıkla) Bu Oyunda 1 den Başlayıp 6 ya Kadar Bölüm Var ve Bu Bölümler Gittikçe Zorlanıyor Son bölümü Açmamanı Öneririm Çünkü Çok Fazla Kasar (Bilgisiyarın Kötüyse)O Zaman İyi Oyunlar! </p>\n<img src=\"assets/mazenaze1.png\" alt=\"Maze Naze Görsel 1\" width=\"600\" style=\"border-radius:15px;\">\n<img src=\"assets/mazenaze2.png\" alt=\"Maze Naze Görsel 2\" width=\"600\" style=\"border-radius:15px;\">\n<img src=\"assets/mazenaze3.png\" alt=\"Maze Naze Görsel 3\" width=\"600\" style=\"border-radius:15px;\">\n<img src=\"assets/mazenaze4.png\" alt=\"Maze Naze Görsel 4\" width=\"600\" style=\"border-radius:15px;\">\n<p><a href=\"assets/mazenaze.zip\" download style=\"display:inline-block;margin-top:10px;padding:8px 12px;background:#4CAF50;color:white;border-radius:8px;text-decoration:none;\">Oyunu İndir (ZIP)</a></p>",
-  "link": "post.html?id=2",
+  "link": "post.html?id=3",
   "linkText": "Oyunu İndir!"
 }
 
