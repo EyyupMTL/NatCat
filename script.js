@@ -145,3 +145,62 @@ if(commentForm){
 }
 
 });
+// ---------- LIGHTBOX (Resim Önizleme + Sağ Sol Buton) ----------
+document.addEventListener("DOMContentLoaded", () => {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector(".close-btn");
+  const leftBtn = document.querySelector(".nav-btn.left");
+  const rightBtn = document.querySelector(".nav-btn.right");
+
+  let images = [];
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    lightboxImg.src = images[currentIndex].src;
+    lightbox.style.display = "flex";
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = "none";
+  }
+
+  // Post içerik yüklendikten sonra resimleri bul
+  setTimeout(() => {
+    const postImages = document.querySelectorAll(".post-container img");
+    images = Array.from(postImages);
+
+    images.forEach((img, i) => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => openLightbox(i));
+    });
+  }, 500);
+
+  // Buton olayları
+  rightBtn.addEventListener("click", showNext);
+  leftBtn.addEventListener("click", showPrev);
+  closeBtn.addEventListener("click", closeLightbox);
+
+  // ESC ile kapatma
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") showNext();
+    if (e.key === "ArrowLeft") showPrev();
+  });
+
+  // Lightbox boş alana tıklayınca kapanır
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+});
