@@ -1,41 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EASTER egg</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/natcaticon.png" type="image/png">
+<meta charset="UTF-8">
+<title>Easter Egg </title>
+<link rel="stylesheet" href="style.css">
+<header>
+  <a class="logo" href="index.html">    <nav class="natcat"> 
+    <img src="assets/NatCatpic-removebg-preview.png" alt="">
+   <style>
+    .natcat img {
+  width: 70px; /* İstediğin genişlik */
+  height: auto; /* Oranı korur */
+}
+span
+{
+top: 20px;
+}
+   </style>
+   <span>NatCat</span>
+  </nav></a>
+  <nav id="nav-menu">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="about.html">Hakkımda</a>
+    <a href="blog.html">Post'lar</a>
+    <a href="contact.html">Bize Ulaşın</a>
+    
+  </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+<style>
+
+body{
+    background:#0c0f16;
+    margin:0;
+    overflow:hidden;
+    font-family:Arial;
+    color:white;
+}
+
+/* SCORE */
+/* SCORE */
+.egg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative; /* <- mutlak konumlu score için gerekli */
+}
+#scoreBox {
+    position: absolute;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffdd00;
+    pointer-events: none;
+    z-index: 100;
+    left: 50%; /* başlangıç değeri, JS ile güncellenecek */
+    top: 80%;  /* başlangıç değeri, JS ile güncellenecek */
+    transform: translate(-50%, -120%); /* yumurtanın üstüne yerleştirir */
+}
+
+
+
+/* Senin global span bounce'ını override ediyoruz */
+.egg-span {
+    position: relative;
+    animation: eggBounce 0.4s ease infinite alternate !important;
+    top: -20px !important;
+}
+
+@keyframes eggBounce {
+    0% { top: -20px; }
+    100% { top: -30px; }
+}
+
+/* Yumurta */
+.egg img {
+    width: 230px;
+    cursor: pointer;
+    user-select:none;
+}
+
+/* Shake */
+.shake {
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%,100% { transform: rotate(0); }
+    25% { transform: rotate(18deg); }
+    50% { transform: rotate(-18deg); }
+    75% { transform: rotate(12deg); }
+}
+
+/* Rotate 180 */
+.rotate180 {
+    animation: rotate180 0.6s ease;
+}
+@keyframes rotate180 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(180deg); }
+}
+
+/* Crack */
+.crack {
+    animation: crack 0.5s ease;
+}
+@keyframes crack {
+    0% { transform:scale(1); }
+    40% { transform:scale(1.15) rotate(7deg); }
+    100% { transform:scale(1) rotate(0); }
+}
+
+/* Golden */
+.golden {
+    animation: golden 1s ease;
+    filter: drop-shadow(0 0 15px gold);
+}
+@keyframes golden {
+    0% { transform:scale(1); filter:brightness(1); }
+    50% { transform:scale(1.25) brightness(2); }
+    100% { transform:scale(1) brightness(1); }
+}
+
+/* +1 Pop text */
+.score-pop {
+    position:absolute;
+    color:#ff0055;
+    font-size:28px;
+    font-weight:bold;
+    animation: pop 0.7s ease forwards;
+    pointer-events:none;
+}
+
+@keyframes pop {
+    0% { opacity:1; transform:translateY(0) scale(1); }
+    100% { opacity:0; transform:translateY(-40px) scale(1.5); }
+}
+
+</style>
 
 </head>
- <h1 class="section-title">
-     <span><img src="assets/egg.png" alt=""></span> 
-    
-    </h1>
 <body>
-    <style>
-html, body {
-  height: 100%; /* Tam sayfa yüksekliği için */
-  margin: 0;
+
+<!-- SCORE -->
+
+
+<!-- YUMURTA -->
+<div id="scoreBox">Score: 0</div>
+
+<h1 class="egg">
+    <span class="egg-span">
+        <img id="eggImg" src="assets/egg.png" alt="">
+    </span>
+</h1>
+
+
+
+<!-- SESLER -->
+<audio id="chirpSound" src="assets/cit.mp3"></audio>
+<audio id="crackSound" src="assets/catlama.mp3"></audio>
+<audio id="goldenSound" src="assets/legend.mp3"></audio>
+
+<script>
+
+let score = 0;
+
+const egg = document.getElementById("eggImg");
+const scoreBox = document.getElementById("scoreBox");
+
+const chirp = document.getElementById("chirpSound");
+const crackSound = document.getElementById("crackSound");
+const goldenSound = document.getElementById("goldenSound");
+
+egg.addEventListener("click", (e) => {
+
+    let addScore = 1; // varsayılan
+
+    // Eğer civciv açık ise +2
+    if (egg.src.includes("chick.png")) {
+        addScore = 2;
+    }
+
+    // Eğer golden egg açık ise +5
+    if (egg.src.includes("goldenegg.png")) {
+        addScore = 5;
+    }
+
+    // SCORE ARTTIR
+    score += addScore;
+    scoreBox.textContent = "Score: " + score;
+
+    // POP efektinde +1 yerine gerçek skor artışını göster
+    makePop(e.pageX, e.pageY, addScore);
+
+   let r = Math.random() * 100;
+
+// %0.3 Golden Egg
+if (r < 0.3) {
+    egg.src = "assets/goldenegg.png";
+    egg.classList.add("golden");
+    goldenSound.currentTime = 0;
+    goldenSound.play();
+
+    setTimeout(() => {
+        egg.classList.remove("golden");
+        egg.src = "assets/egg.png";
+    }, 1200);
+
+    return;
 }
 
-.section-title {
-  display: flex;               /* Flex container yap */
-  justify-content: center;     /* Yatay ortala */
-  align-items: center;         /* Dikey ortala */
-  height: 100vh;               /* Görünüm yüksekliği kadar yer kapla */
-  font-size: 64px;
-  size: 500px;
-}
-.section-title span {
-  margin-right: 30px; /* Sağ tarafına boşluk bırak */
+// %5 Civciv (Crack)
+if (r < 5.3) {
+    egg.classList.add("crack");
+    crackSound.currentTime = 0;
+    crackSound.play();
+
+    setTimeout(() => {
+        egg.classList.remove("crack");
+
+        // Civciv göster
+        egg.src = "assets/chick.png";
+
+        // 1.5 saniye sonra tekrar yumurta
+        setTimeout(() => {
+            egg.src = "assets/egg.png";
+        }, 1500);
+
+    }, 500);
+
+    return;
 }
 
-/* Son span için istersen boşluk kaldırabilirsin */
-.section-title span:last-child {
-  margin-right: 0;
+// %35 Rotate
+if (r < 40.3) {
+    egg.classList.add("rotate180");
+    chirp.currentTime = 0;
+    chirp.play();
+    setTimeout(() => egg.classList.remove("rotate180"), 600);
+    return;
 }
-    </style>
-    
+
+// %59.7 Shake
+egg.classList.add("shake");
+chirp.currentTime = 0;
+chirp.play();
+setTimeout(() => egg.classList.remove("shake"), 400);
+
+});
+
+
+/* --- +1 Pop fonksiyonu --- */
+function makePop(x, y, amount) {
+    const pop = document.createElement("div");
+    pop.className = "score-pop";
+    pop.innerText = "+" + amount;
+    document.body.appendChild(pop);
+
+    pop.style.left = (x - 10) + "px";
+    pop.style.top = (y - 20) + "px";
+
+    setTimeout(() => pop.remove(), 700);
+}
+
+
+</script>
+
 </body>
 </html>

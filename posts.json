@@ -56,6 +56,17 @@
      "content": "<p>Eğlencesine Sıkılınca Oynanabilir Bir Oyun Yapmıştım Şimdi Eğlenme Sırası Sende!! (İndirdikten Sonra Zip Dosyasını Ayıkla)  İyi Oyunlar! </p>\n<img src=\"assets/nc1.png\" alt=\"Köfiteboz Görsel 1\" width=\"400\" style=\"border-radius:15px;\">\n<img src=\"assets/nc2.png\" alt=\"Köfiteboz Görsel 2\" width=\"400\" style=\"border-radius:15px;\">\n<img src=\"assets/nc3.png\" alt=\"Köfiteboz Görsel 3\" width=\"400\" style=\"border-radius:15px;\">\n<img src=\"assets/nc4.png\" alt=\"Köfiteboz Görsel 4\" width=\"400\" style=\"border-radius:15px;\">\n <img src=\"assets/nc5.png\" alt=\"Köfiteboz Görsel 5\" width=\"400\" style=\"border-radius:15px;\">\n  <p><a href=\"assets/NeinCraft.zip\" download style=\"display:inline-block;margin-top:10px;padding:8px 12px;background:#4CAF50;color:white;border-radius:8px;text-decoration:none;\">Oyunu İndir (ZIP)</a></p>",
    "link": "post.html?id=5",
     "linkText": "Oyunu İndir!"
+  },
+  {
+    "id": 6,
+    "title": "Easter Egg",
+    "date": "2025-11-24",
+    "author": "Eyyüp Mutlu",
+    "summary": "Tarayıcıdan Oyna",
+    "cover": "assets/ee2.png",
+     "content": "<p>Eğlencesine Sıkılınca Oynanabilir Bir Oyun Yapmıştım tarayıcıdan oyna İyi Oyunlar! </p>\n<img src=\"assets/ee1.png\" alt=\"Köfiteboz Görsel 1\" width=\"400\" style=\"border-radius:15px;\">\n<img src=\"assets/ee2.png\" alt=\"Köfiteboz Görsel 2\" width=\"400\" style=\"border-radius:15px;\">\n<img src=\"assets/ee3.png\" alt=\"Köfiteboz Görsel 3\" width=\"400\" style=\"border-radius:15px;\">\n <a href=\"easter.html\" style=\"display:inline-block;margin-top:10px;padding:10px 16px;background:#4CAF50;color:white;border-radius:8px;text-decoration:none;\">Oyna</a></p>",
+   "link": "post.html?id=6",
+    "linkText": "Oyunu Oyna"
   }
   
 ]
