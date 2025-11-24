@@ -4,17 +4,24 @@
   <meta charset="UTF-8">
   <title>Ana Sayfa</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/NatCatPic-removebg-preview.png" type="image/png">
 </head>
 <body>
 
 <header>
-  <a class="logo" href="index.html">    <nav class="section-title"> 
-    <span>N</span>
-    <span>A</span>
-    <span>T</span>
-    <span>C</span>
-    <span>A</span>
-    <span>T</span>
+  <a class="logo" href="index.html">    <nav class="natcat"> 
+    <img src="assets/NatCatpic-removebg-preview.png" alt="">
+   <style>
+    .natcat img {
+  width: 70px; /* İstediğin genişlik */
+  height: auto; /* Oranı korur */
+}
+span
+{
+top: 20px;
+}
+   </style>
+   <span>NatCat</span>
   </nav></a>
   <nav id="nav-menu">
     <a href="index.html">Ana Sayfa</a>
@@ -67,7 +74,7 @@
   span{
   position: relative;
   animation: bounce 0.4s ease infinite alternate;
-  top: 10px;
+  top: -20px;
   }
   
   h2 span:nth-child(2){animation-delay: 0.1s;}
@@ -97,7 +104,7 @@
   
   @keyframes bounce{
   100%{
-  top: -10px;}}
+  top: -30px;}}
  </style>
   <div id="blog-grid" class="blog-grid"></div>
 </div>

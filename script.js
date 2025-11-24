@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
           textOnly.querySelectorAll("img").forEach(img => img.remove());
 
           postContainer.innerHTML = `
-            <h1>${post.title}</h1>
+            <h1 id="post-title">${post.title}</h1>
             <div style="display:inline-block;padding:6px 12px;border:2px solid #4CAF50;color:#4CAF50;border-radius:8px;margin:5px 0 15px 0;font-size:14px;font-weight:600;">
               Paylaşan: ${post.author}
             </div>
@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadLink.addEventListener('click', (e) => {
               e.preventDefault();
 
-              // 1. Formspree maili gönder
               fetch("https://formspree.io/f/xanpqdgg", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
               }).then(() => console.log("Mail gönderildi!"))
                 .catch(err => console.error(err));
 
-              // 2. Dosyayı indir
               const url = downloadLink.getAttribute('href');
               const a = document.createElement('a');
               a.href = url;
@@ -142,62 +140,93 @@ document.addEventListener('DOMContentLoaded', () => {
       if(status) status.textContent = "Mailiniz açılıyor...";
     });
   }
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('comment-form');
+  const status = document.getElementById('form-status');
 
-  // ---------- Yorum Sistemi ----------
-  const commentForm = document.getElementById("comment-form");
-  const commentsDiv = document.getElementById("comments");
+  // Post ID ve başlığını almak için URL'den çekiyoruz
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id'));
 
-  if(commentForm){
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id'));
+  // posts.json'dan title çek
+  fetch("posts.json")
+    .then(r => r.json())
+    .then(posts => {
+      const post = posts.find(p => p.id === id);
+      const postTitle = post ? post.title : "Bilinmeyen Post";
 
-    function loadComments(){
-      const saved = JSON.parse(localStorage.getItem("comments_" + id)) || [];
-      commentsDiv.innerHTML = "";
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
 
-      if(saved.length === 0){
-        commentsDiv.innerHTML = "<p>Henüz yorum yok.</p>";
-        return;
+        const nameInput = document.getElementById('name').value.trim() || "Anonim";
+        const messageInput = document.getElementById('message').value.trim();
+
+        if(messageInput === "") return;
+
+        const finalName = `${nameInput} - ${postTitle}`;
+
+        // LocalStorage kaydı
+        const saved = JSON.parse(localStorage.getItem("comments_" + id)) || [];
+        saved.push({
+          name: finalName,
+          text: messageInput,
+          date: new Date().toLocaleString()
+        });
+        localStorage.setItem("comments_" + id, JSON.stringify(saved));
+
+        // Formspree gönderimi
+        const data = new FormData(form);
+        data.set('name', finalName); // Formspree için de finalName kullan
+
+        fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(response => {
+          if(response.ok){
+            status.textContent = "Yorumunuz gönderildi! Teşekkürler.";
+            form.reset();
+            loadComments();
+          } else {
+            status.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
+          }
+        }).catch(err => {
+          status.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
+          console.error(err);
+        });
+      });
+
+      // Yorumları yükleme
+      const commentsDiv = document.createElement('div');
+      commentsDiv.id = 'comments';
+      form.parentNode.insertBefore(commentsDiv, status);
+
+      function loadComments(){
+        const saved = JSON.parse(localStorage.getItem("comments_" + id)) || [];
+        commentsDiv.innerHTML = "";
+
+        if(saved.length === 0){
+          commentsDiv.innerHTML = "<p>Henüz yorum yok.</p>";
+          return;
+        }
+
+        saved.forEach(c => {
+          const div = document.createElement('div');
+          div.classList.add('comment');
+          div.innerHTML = `
+            <p><strong>${c.name}</strong> <em>${c.date}</em></p>
+            <p>${c.text}</p>
+            <hr>
+          `;
+          commentsDiv.appendChild(div);
+        });
       }
 
-      saved.forEach(c => {
-        const div = document.createElement("div");
-        div.classList.add("comment");
-        div.innerHTML = `
-          <p><strong>${c.name}</strong> <em>${c.date}</em></p>
-          <p>${c.text}</p>
-          <hr>
-        `;
-        commentsDiv.appendChild(div);
-      });
-    }
-
-    loadComments();
-
-    commentForm.addEventListener("submit", function(e){
-      e.preventDefault();
-
-      const name = document.getElementById("comment-name").value.trim();
-      const text = document.getElementById("comment-text").value.trim();
-      const date = new Date().toLocaleString();
-
-      if(text === "") return;
-
-      const comment = {
-        name: name || "Anonim",
-        text,
-        date
-      };
-
-      const saved = JSON.parse(localStorage.getItem("comments_" + id)) || [];
-      saved.push(comment);
-
-      localStorage.setItem("comments_" + id, JSON.stringify(saved));
-
-      commentForm.reset();
       loadComments();
     });
-  }
+});
+
+
 
 });
 

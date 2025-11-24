@@ -4,17 +4,21 @@
   <meta charset="UTF-8">
   <title>Blog</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/NatCatPic-removebg-preview.png" type="image/png">
 </head>
 <body>
 
 <header>
-  <a class="logo" href="index.html"> <nav class="section-title"> 
-    <span>N</span>
-    <span>A</span>
-    <span>T</span>
-    <span>C</span>
-    <span>A</span>
-    <span>T</span>
+ <a class="logo" href="index.html">    <nav class="natcat"> 
+    <img src="assets/NatCatpic-removebg-preview.png" alt="">
+   <style>
+    .natcat img {
+  width: 70px; /* İstediğin genişlik */
+  height: auto; /* Oranı korur */
+}
+
+   </style>
+   <span>NatCat</span>
   </nav></a>
 
   <!-- Arama Kutusu -->
@@ -46,33 +50,13 @@
     <span>R</span>
   </h1>
    <!-- Arama Kutusu -->
- <style>
-  span{
+<style>
+  .container .section-title {
   position: relative;
-  animation: bounce 0.4s ease infinite alternate;
-  top: 10px;
-  }
-  
-  h1 span:nth-child(2){animation-delay: 0.1s;}
-  h1 span:nth-child(3){animation-delay: 0.2s;}
-  h1 span:nth-child(4){animation-delay: 0.3s;}
-  h1 span:nth-child(5){animation-delay: 0.4s;}
-  h1 span:nth-child(6){animation-delay: 0.5s;}
-  h1 span:nth-child(7){animation-delay: 0.6s;}
-  h1 span:nth-child(8){animation-delay: 0.7s;}
-  h1 span:nth-child(9){animation-delay: 0.8s;}
-  h1 span:nth-child(10){animation-delay: 0.9s;}
-  h1 span:nth-child(11){animation-delay: 0.12s;}
-  h1 span:nth-child(11){animation-delay: 0.19s;}
-  
-  
-  
-  
-  
-  @keyframes bounce{
-  100%{
-  top: -10px;}}
- </style>
+  top: 40px;   /* 10px aşağı kaydırır */
+}
+
+</style>
 
   <div id="blog-list" class="blog-grid"></div>
 </div>

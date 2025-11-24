@@ -4,17 +4,21 @@
   <meta charset="UTF-8">
   <title>Blog Yazısı</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/NatCatPic-removebg-preview.png" type="image/png">
 </head>
 <body>
 
 <header>
-  <a class="logo" href="index.html"> <nav class="section-title"> 
-    <span>N</span>
-    <span>A</span>
-    <span>T</span>
-    <span>C</span>
-    <span>A</span>
-    <span>T</span>
+  <a class="logo" href="index.html">    <nav class="natcat"> 
+    <img src="assets/NatCatpic-removebg-preview.png" alt="">
+   <style>
+    .natcat img {
+  width: 70px; /* İstediğin genişlik */
+  height: auto; /* Oranı korur */
+}
+
+   </style>
+   <span>NatCat</span>
   </nav></a>
    <nav>
     <a href="index.html">Ana Sayfa</a>
@@ -44,21 +48,20 @@
   <h2>Yorumlar</h2>
 
   <!-- Formspree ile yorum formu -->
-  <form action="https://formspree.io/f/xanpqdgg" method="POST" id="comment-form">
-    <label for="name">Adınız:</label>
-    <input type="text" id="name" name="name" placeholder="Adınızı yazın" required>
+ <form action="https://formspree.io/f/xanpqdgg" method="POST" id="comment-form">
+  <label for="name">Adınız:</label>
+  <input type="text" id="name" name="name" placeholder="Adınızı yazın" required>
 
-      <input type="hidden" name="email" value="yorum@gmail.com">
+  <input type="hidden" name="email" value="yorum@gmail.com">
 
-    <label for="message">Yorumunuz:</label>
-    <textarea id="message" name="message" placeholder="Yorumunuzu yazın..." required></textarea>
+  <label for="message">Yorumunuz:</label>
+  <textarea id="message" name="message" placeholder="Yorumunuzu yazın..." required></textarea>
 
-    <button type="submit">Yorumu Gönder</button>
-  </form>
+  <button type="submit">Yorumu Gönder</button>
+</form>
 
-  <!-- Gönderim sonrası durum -->
-  <p id="form-status"></p>
-</div>
+<p id="form-status"></p>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
