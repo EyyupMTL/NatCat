@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="post.html?id=${post.id}">${post.linkText}</a>
           `;
           blogGrid.appendChild(card);
+
+          card.addEventListener('click', () => {
+            window.location.href = `post.html?id=${post.id}`;
+          });
         });
       }
 
@@ -38,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
               <a href="post.html?id=${post.id}">${post.linkText}</a>
             `;
             blogGrid.appendChild(card);
+
+            card.addEventListener('click', () => {
+              window.location.href = `post.html?id=${post.id}`;
+            });
           });
         });
       }
@@ -50,57 +58,58 @@ document.addEventListener('DOMContentLoaded', () => {
         const post = posts.find(p => p.id === id);
 
         if(post){
-
-          // Post içeriğini geçici div'e yerleştir
           const tempDiv = document.createElement("div");
           tempDiv.innerHTML = post.content;
 
-          // İçerideki tüm resimleri al
           const images = tempDiv.querySelectorAll("img");
 
-          // Sadece yazı içeriği
           const textOnly = tempDiv.cloneNode(true);
           textOnly.querySelectorAll("img").forEach(img => img.remove());
 
-         postContainer.innerHTML = `
-  <h1>${post.title}</h1>
-<div style="
-  display:inline-block;
-  padding:6px 12px;
-  border:2px solid #4CAF50;
-  color:#4CAF50;
-  border-radius:8px;
-  margin:5px 0 15px 0;
-  font-size:14px;
-  font-weight:600;
-">
-  Paylaşan: ${post.author}
-</div>
+          postContainer.innerHTML = `
+            <h1>${post.title}</h1>
+            <div style="display:inline-block;padding:6px 12px;border:2px solid #4CAF50;color:#4CAF50;border-radius:8px;margin:5px 0 15px 0;font-size:14px;font-weight:600;">
+              Paylaşan: ${post.author}
+            </div>
+            <p><em>${post.date}</em></p>
+            <img src="${post.cover}" id="main-post-image" style="width:100%;border-radius:15px;cursor:pointer;margin-bottom:20px;">
+            <div id="post-text">${textOnly.innerHTML}</div>
+            <div id="hidden-images" style="display:none;"></div>
+          `;
 
-  <!-- Tarih normal -->
-  <p><em>${post.date}</em></p>
-
-  
-   
-
-  <!-- ANA RESİM -->
-  <img src="${post.cover}" id="main-post-image"
-       style="width:100%;border-radius:15px;cursor:pointer;margin-bottom:20px;">
-
-  <!-- Yazılar -->
-  <div id="post-text">
-    ${textOnly.innerHTML}
-  </div>
-
-  <!-- Gizli resimler -->
-  <div id="hidden-images" style="display:none;"></div>
-`;
-
-          // Gizli image alanına resimleri ekle
           const hiddenDiv = document.getElementById("hidden-images");
           images.forEach(img => hiddenDiv.appendChild(img));
-        }
-        else {
+
+          // ---------- Download link tıklaması ile mail gönder & dosya indir ----------
+          const downloadLink = postContainer.querySelector('a[download]');
+          if(downloadLink){
+            downloadLink.addEventListener('click', (e) => {
+              e.preventDefault();
+
+              // 1. Formspree maili gönder
+              fetch("https://formspree.io/f/xanpqdgg", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: "Oyun Yüklendi",
+                  email: "Oyun@example.com",
+                  message: `Kullanıcı "${post.title}" oyununu indirdi.`
+                })
+              }).then(() => console.log("Mail gönderildi!"))
+                .catch(err => console.error(err));
+
+              // 2. Dosyayı indir
+              const url = downloadLink.getAttribute('href');
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = url.split('/').pop();
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            });
+          }
+
+        } else {
           postContainer.innerHTML = "<p>Gönderi bulunamadı.</p>";
         }
       }
@@ -223,7 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.style.display = "none";
   }
 
-  // Gizli resimleri al
   setTimeout(() => {
     const hidden = document.querySelectorAll("#hidden-images img");
     images = Array.from(hidden);

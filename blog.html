@@ -8,7 +8,14 @@
 <body>
 
 <header>
-  <a class="logo" href="index.html">Nat Cat</a>
+  <a class="logo" href="index.html"> <nav class="section-title"> 
+    <span>N</span>
+    <span>A</span>
+    <span>T</span>
+    <span>C</span>
+    <span>A</span>
+    <span>T</span>
+  </nav></a>
 
   <!-- Arama Kutusu -->
   <input type="text" id="blog-search" placeholder="Post’ların başlığına göre ara..." class="header-search">
@@ -18,14 +25,54 @@
     <a href="about.html">Hakkımda</a>
    <a href="blog.html">Post'lar</a>
     <a href="contact.html" class="contact-button">Bize Ulaşın</a>
+    
   </nav>
 </header>
 
 
 <div class="container">
-  <h1 class="section-title"> Bütün Post'lar</h1>
+  <h1 class="section-title"> 
+    <span>B</span>
+    <span>Ü</span>
+    <span>T</span>
+    <span>Ü</span>
+    <span>N</span>
+    <span>P</span>
+    <span>O</span>
+    <span>S</span>
+    <span>T</span>
+    <span>L</span>
+    <span>A</span>
+    <span>R</span>
+  </h1>
    <!-- Arama Kutusu -->
- 
+ <style>
+  span{
+  position: relative;
+  animation: bounce 0.4s ease infinite alternate;
+  top: 10px;
+  }
+  
+  h1 span:nth-child(2){animation-delay: 0.1s;}
+  h1 span:nth-child(3){animation-delay: 0.2s;}
+  h1 span:nth-child(4){animation-delay: 0.3s;}
+  h1 span:nth-child(5){animation-delay: 0.4s;}
+  h1 span:nth-child(6){animation-delay: 0.5s;}
+  h1 span:nth-child(7){animation-delay: 0.6s;}
+  h1 span:nth-child(8){animation-delay: 0.7s;}
+  h1 span:nth-child(9){animation-delay: 0.8s;}
+  h1 span:nth-child(10){animation-delay: 0.9s;}
+  h1 span:nth-child(11){animation-delay: 0.12s;}
+  h1 span:nth-child(11){animation-delay: 0.19s;}
+  
+  
+  
+  
+  
+  @keyframes bounce{
+  100%{
+  top: -10px;}}
+ </style>
 
   <div id="blog-list" class="blog-grid"></div>
 </div>

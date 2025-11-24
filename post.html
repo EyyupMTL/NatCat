@@ -8,13 +8,22 @@
 <body>
 
 <header>
-  <a class="logo" href="index.html">Nat Cat</a>
+  <a class="logo" href="index.html"> <nav class="section-title"> 
+    <span>N</span>
+    <span>A</span>
+    <span>T</span>
+    <span>C</span>
+    <span>A</span>
+    <span>T</span>
+  </nav></a>
    <nav>
     <a href="index.html">Ana Sayfa</a>
     <a href="about.html">Hakkımda</a>
     <a href="blog.html">Post'lar</a>
+
     <!-- Sabit Üst Buton -->
 <a href="contact.html" class="contact-button">Bize Ulaşın</a>
+
 
   </nav>
 </header>
@@ -31,8 +40,62 @@
   <button class="nav-btn left">&#10094;</button>
   <button class="nav-btn right">&#10095;</button>
 </div>
+<div class="comment-section">
+  <h2>Yorumlar</h2>
+
+  <!-- Formspree ile yorum formu -->
+  <form action="https://formspree.io/f/xanpqdgg" method="POST" id="comment-form">
+    <label for="name">Adınız:</label>
+    <input type="text" id="name" name="name" placeholder="Adınızı yazın" required>
+
+      <input type="hidden" name="email" value="yorum@gmail.com">
+
+    <label for="message">Yorumunuz:</label>
+    <textarea id="message" name="message" placeholder="Yorumunuzu yazın..." required></textarea>
+
+    <button type="submit">Yorumu Gönder</button>
+  </form>
+
+  <!-- Gönderim sonrası durum -->
+  <p id="form-status"></p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('comment-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault(); // Sayfa yenilenmesin
+
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if(response.ok){
+        status.textContent = "Yorumunuz gönderildi! Teşekkürler.";
+        form.reset();
+      } else {
+        status.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
+      }
+    }).catch(err => {
+      status.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
+      console.error(err);
+    });
+  });
+});
+</script>
 
 
 <script src="script.js"></script>
 </body>
 </html>
+<script>
+  
+
+</script>

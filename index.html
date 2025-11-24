@@ -8,12 +8,20 @@
 <body>
 
 <header>
-  <a class="logo" href="index.html">    <nav>Nat Cat</nav></a>
+  <a class="logo" href="index.html">    <nav class="section-title"> 
+    <span>N</span>
+    <span>A</span>
+    <span>T</span>
+    <span>C</span>
+    <span>A</span>
+    <span>T</span>
+  </nav></a>
   <nav id="nav-menu">
     <a href="index.html">Ana Sayfa</a>
     <a href="about.html">Hakkımda</a>
     <a href="blog.html">Post'lar</a>
     <a href="contact.html">Bize Ulaşın</a>
+    
   </nav>
   <div class="hamburger" id="hamburger">
     <span></span>
@@ -38,7 +46,59 @@
  <img src="assets/natcat.png" alt="NatCat" class="hero-pc-img">
  
   <div class="container">
-  <h2 class="section-title">Sabitlenenler : </h2>
+  <h2 class="section-title"> 
+    <span>S</span>
+    <span>A</span>
+    <span>B</span>
+    <span>İ</span>
+    <span>T</span>
+    <span>L</span>
+    <span>E</span>
+    <span>N</span>
+    <span>E</span>
+    <span>N</span>
+    <span>L</span>
+    <span>E</span>
+    <span>R</span>
+    <span>:</span>
+  </h2>
+   <!-- Arama Kutusu -->
+ <style>
+  span{
+  position: relative;
+  animation: bounce 0.4s ease infinite alternate;
+  top: 10px;
+  }
+  
+  h2 span:nth-child(2){animation-delay: 0.1s;}
+  h2 span:nth-child(3){animation-delay: 0.2s;}
+  h2 span:nth-child(4){animation-delay: 0.3s;}
+  h2 span:nth-child(5){animation-delay: 0.4s;}
+  h2 span:nth-child(6){animation-delay: 0.5s;}
+  h2 span:nth-child(7){animation-delay: 0.6s;}
+  h2 span:nth-child(8){animation-delay: 0.7s;}
+  h2 span:nth-child(9){animation-delay: 0.8s;}
+  h2 span:nth-child(10){animation-delay: 0.9s;}
+  h2 span:nth-child(11){animation-delay: 0.12s;}
+  h2 span:nth-child(12){animation-delay: 0.19s;}
+  h2 span:nth-child(13){animation-delay: 0.24s;}
+  h2 span:nth-child(14){animation-delay: 0.7s;}
+  h2 span:nth-child(15){animation-delay: 0.9s;}
+  
+  nav span:nth-child(2){animation-delay: 0.1s;}
+  nav span:nth-child(3){animation-delay: 0.2s;}
+  nav span:nth-child(4){animation-delay: 0.3s;}
+  nav span:nth-child(5){animation-delay: 0.4s;}
+  nav span:nth-child(6){animation-delay: 0.5s;}
+  nav span:nth-child(7){animation-delay: 0.6s;}
+  
+  
+  
+  
+  @keyframes bounce{
+  100%{
+  top: -10px;}}
+ </style>
   <div id="blog-grid" class="blog-grid"></div>
 </div>
 
@@ -52,16 +112,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.classList.add('blog-card');
         card.innerHTML = `
-          <img src="${post.cover}" alt="${post.title}" class="cover">
-          <h3>${post.title}</h3>
-          <p>${post.summary}</p>
-          <a href="${post.link}">${post.linkText}</a>
+          <div class="front">
+            <img src="${post.cover}" alt="${post.title}" class="cover">
+            <h3>${post.title}</h3>
+            <p>${post.summary}</p>
+          </div>
+          <div class="back">
+            <a href="${post.link}" class="back-link">${post.linkText}</a>
+          </div>
         `;
+
+        // Ön yüz tıklayınca linke yönlendir
+        const front = card.querySelector('.front');
+        front.addEventListener('click', () => {
+          window.location.href = post.link;
+        });
+
         blogGrid.appendChild(card);
       });
     })
     .catch(err => console.error("JSON yüklenemedi:", err));
 });
+
+
 </script>
 
 <footer>© 2025 Nat Cat
