@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>JSON Düzenleyici ve Oluşturucu</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; }
+    input, textarea, button, select {
+        width: 100%; padding: 10px; margin: 10px 0; font-size: 16px;
+    }
+    #contentPreview { 
+        border: 1px solid #ccc; padding: 15px; min-height: 100px;
+        background: #fafafa; border-radius: 6px; 
+    }
+    #jsonOutput, #jsonInput {
+        white-space: pre; background: #1e1e1e; color: #dcdcdc;
+        padding: 15px; border-radius: 6px; margin-top: 10px; height: 200px;
+        overflow:auto;
+    }
+    .row { display: flex; gap: 10px; }
+    .row > div { flex: 1; }
+    .btn-small { width: auto; margin-right: 10px; padding: 8px 12px; }
+</style>
+</head>
+<body>
+
+<h2>JSON Düzenleyici ve Oluşturucu</h2>
+
+<h3>JSON Yükle / Kod Yapıştır</h3>
+<textarea id="jsonInput" placeholder="JSON kodunu buraya yapıştır..." ></textarea>
+<button style="background:#2196F3;color:white;" onclick="loadJSON()">JSON Yükle</button>
+
+<hr>
+
+<div class="row">
+    <div>
+        <label>ID</label>
+        <input type="number" id="id">
+    </div>
+    <div>
+        <label>Tarih</label>
+        <input type="date" id="date">
+    </div>
+</div>
+
+<label>Başlık</label>
+<input type="text" id="title">
+
+<label>Author</label>
+<input type="text" id="author">
+
+<label>Summary</label>
+<input type="text" id="summary">
+
+<label>Cover (örn: ee2)</label>
+<input type="text" id="cover">
+
+<label>Link ID (sadece sayı, örn: 6)</label>
+<input type="number" id="link">
+
+<label>Link Text</label>
+<input type="text" id="linkText">
+
+<hr>
+
+<h3>Content Oluştur</h3>
+<div>
+    <button class="btn-small" onclick="addText()">Add Text</button>
+    <button class="btn-small" onclick="addImage()">Add Image</button>
+    <button class="btn-small" onclick="addButton()">Add Button</button>
+</div>
+<div id="contentPreview"></div>
+
+<hr>
+
+<button style="background:#4CAF50;color:white;" onclick="generateJSON()">JSON Oluştur</button>
+
+<h3>Oluşturulan JSON</h3>
+<pre id="jsonOutput"></pre>
+
+<script>
+const allowedFormats = ["png","jpg","mp3","mp4","exe","zip"];
+
+function askFormat(type="image") {
+    let format = prompt(
+        type === "image" 
+        ? "Dosya formatı ne olsun? PNG mi JPG mi? (png/jpg)" 
+        : "Dosya formatı ne olsun? (png/jpg/mp3/mp4/exe/zip)"
+    );
+    if (!format) return null;
+    format = format.toLowerCase();
+    if (!allowedFormats.includes(format)) {
+        alert("Geçersiz format! Seçebileceğin formatlar: " + allowedFormats.join(", "));
+        return null;
+    }
+    return format;
+}
+
+function buildAssetPath(name, type="image") {
+    let format = askFormat(type);
+    if (!format) return null;
+    return `assets/${name}.${format}`;
+}
+
+function addText() {
+    let t = prompt("Eklenecek yazı:");
+    if (!t) return;
+    document.getElementById("contentPreview").innerHTML += `<p>${t}</p>\n`;
+}
+
+function addImage() {
+    let name = prompt("Resim adı (örn: ee1):");
+    if (!name) return;
+
+    let full = buildAssetPath(name,"image");
+    if (!full) return;
+
+    document.getElementById("contentPreview").innerHTML += 
+        `<img src="${full}" class="game-img">\n`;
+}
+
+function addButton() {
+    let type = prompt(
+        "Hangi buton türünü eklemek istiyorsun?\n\n1 = Normal Yönlendirme\n2 = Download (İndir)\n3 = Veri Gönderme (POST)"
+    );
+
+    if (!type) return;
+
+    if (type === "1") {
+        let text = prompt("Button yazısı:");
+        let urlName = prompt("Link adı (örn: ee2 veya page):");
+        if (!text || !urlName) return;
+
+        let url;
+        if (urlName.includes(".")) {
+            url = urlName;
+        } else {
+            let ext = askFormat("file");
+            if (!ext) return;
+            url = `assets/${urlName}.${ext}`;
+        }
+
+        document.getElementById("contentPreview").innerHTML += 
+            `<a href="${url}" class="content-button">${text}</a>\n`;
+    }
+
+    else if (type === "2") {
+        let text = prompt("İndir butonunun yazısı:");
+        let fileName = prompt("Dosya adı (örn: setup veya map1):");
+        if (!text || !fileName) return;
+
+        let full = buildAssetPath(fileName,"file");
+        if (!full) return;
+
+        document.getElementById("contentPreview").innerHTML += 
+            `<a href="${full}" download class="content-button">${text}</a>\n`;
+    }
+
+    else if (type === "3") {
+        let text = prompt("Gönderme butonu yazısı:");
+        let endpoint = prompt("POST atılacak URL:");
+        if (!text || !endpoint) return;
+
+        let buttonHTML = `
+<button onclick="fetch('${endpoint}', {method:'POST',body:JSON.stringify({status:'ok'})})" class="content-button">
+    ${text}
+</button>\n`;
+
+        document.getElementById("contentPreview").innerHTML += buttonHTML;
+    }
+
+    else {
+        alert("Geçersiz seçim!");
+    }
+}
+
+function generateJSON() {
+    let coverName = document.getElementById("cover").value;
+    let coverFull = buildAssetPath(coverName,"image");
+    if (!coverFull) return;
+
+    let linkID = document.getElementById("link").value;
+    if (!linkID) {
+        alert("Link ID giriniz!");
+        return;
+    }
+    let linkFull = `post.html?id=${linkID}`;
+
+    let json = {
+        id: Number(document.getElementById("id").value),
+        title: document.getElementById("title").value,
+        date: document.getElementById("date").value,
+        author: document.getElementById("author").value,
+        summary: document.getElementById("summary").value,
+        cover: coverFull,
+        content: document.getElementById("contentPreview").innerHTML.trim(),
+        link: linkFull,
+        linkText: document.getElementById("linkText").value
+    };
+
+    document.getElementById("jsonOutput").textContent =
+        JSON.stringify(json, null, 2);
+}
+
+function loadJSON() {
+    let input = document.getElementById("jsonInput").value;
+    if (!input) return;
+
+    try {
+        let data = JSON.parse(input);
+
+        document.getElementById("id").value = data.id || "";
+        document.getElementById("title").value = data.title || "";
+        document.getElementById("date").value = data.date || "";
+        document.getElementById("author").value = data.author || "";
+        document.getElementById("summary").value = data.summary || "";
+
+        // cover adını parse etmek için
+        if(data.cover){
+            let c = data.cover.split("/").pop(); // ee2.png
+            let name = c.split(".")[0];
+            document.getElementById("cover").value = name;
+        }
+
+        // link id parse
+        if(data.link){
+            let idMatch = data.link.match(/id=(\d+)/);
+            if(idMatch) document.getElementById("link").value = idMatch[1];
+        }
+
+        document.getElementById("linkText").value = data.linkText || "";
+        document.getElementById("contentPreview").innerHTML = data.content || "";
+
+        alert("JSON yüklendi, artık düzenleyebilirsin!");
+    } catch(e){
+        alert("Geçersiz JSON!");
+    }
+}
+</script>
+
+</body>
+</html>

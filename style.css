@@ -1045,3 +1045,17 @@ h6 span{
     0% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-40px) scale(1.5); }
 }
+.game-img {
+    width: 400px;
+    border-radius: 15px;
+}
+
+.content-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
