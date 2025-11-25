@@ -86,12 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadLink.addEventListener('click', (e) => {
               e.preventDefault();
 
-              fetch("https://formspree.io/f/xanpqdgg", {
+              fetch("https://formspree.io/f/xldkonng", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                   name: "Oyun Yüklendi",
                   email: "Oyun@example.com",
+                  subject: `Kullanıcı "${post.title}" oyununu indirdi.`,
                   message: `Kullanıcı "${post.title}" oyununu indirdi.`
                 })
               }).then(() => console.log("Mail gönderildi!"))

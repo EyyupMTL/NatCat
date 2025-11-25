@@ -67,6 +67,17 @@
   "content": "<p>Eğlencesine Sıkılınca Oynanabilir Bir Oyun Yapmıştım tarayıcıdan oyna İyi Oyunlar!</p>\n\n<img src=\"assets/ee1.png\" alt=\"Köfiteboz Görsel 1\" class=\"game-img\">\n<img src=\"assets/ee2.png\" alt=\"Köfiteboz Görsel 2\" class=\"game-img\">\n<img src=\"assets/ee3.png\" alt=\"Köfiteboz Görsel 3\" class=\"game-img\">\n\n<a href=\"easter.html\" class=\"content-button\">Oyna</a>",
   "link": "post.html?id=6",
   "linkText": "Oyunu Oyna"
+},
+{
+  "id": 7,
+  "title": "Doom",
+  "date": "2025-11-25",
+  "author": "yurkagon",
+  "summary": "Tarayıcıdan Doom Oyna",
+  "cover": "assets/d2.png",
+  "content": "<p>Tarayıcıdan Doom Oyna</p>\n<img src=\"assets/d1.png\" class=\"game-img\">\n<img src=\"assets/d2.png\" class=\"game-img\">\n<img src=\"assets/d3.png\" class=\"game-img\">\n<img src=\"assets/d4.png\" class=\"game-img\">\n<img src=\"assets/d5.png\" class=\"game-img\">\n<a href=\"https://yurkagon.github.io/Doom-Nukem-CSS/\" class=\"content-button\">Doom Oyna</a>",
+  "link": "post.html?id=7",
+  "linkText": "Tarayıcıdan Doom Oyna!"
 }
   
   
