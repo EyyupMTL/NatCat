@@ -5,30 +5,58 @@
   <title>Blog Yazısı</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="assets/NatCatPic-removebg-preview.png" type="image/png">
+
+  <style>
+    /* Copy butonu ve code-wrapper stili */
+    .code-wrapper {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: #2196F3;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    pre {
+      background: #1e1e1e;
+      color: #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 0;
+    }
+  </style>
+
 </head>
 <body>
 
 <header>
-  <a class="logo" href="index.html">    <nav class="natcat"> 
-    <img src="assets/NatCatpic-removebg-preview.png" alt="">
-   <style>
-    .natcat img {
-  width: 70px; /* İstediğin genişlik */
-  height: auto; /* Oranı korur */
-}
-
-   </style>
-   <span>NatCat</span>
-  </nav></a>
-   <nav>
+  <a class="logo" href="index.html">
+    <nav class="natcat"> 
+      <img src="assets/NatCatpic-removebg-preview.png" alt="">
+      <style>
+        .natcat img {
+          width: 70px;
+          height: auto;
+        }
+      </style>
+      <span>NatCat</span>
+    </nav>
+  </a>
+  <nav>
     <a href="index.html">Ana Sayfa</a>
     <a href="about.html">Hakkımda</a>
     <a href="blog.html">Post'lar</a>
-
-    <!-- Sabit Üst Buton -->
-<a href="contact.html" class="contact-button">Bize Ulaşın</a>
-
-
+    <a href="contact.html" class="contact-button">Bize Ulaşın</a>
   </nav>
 </header>
 
@@ -37,69 +65,50 @@
   <p id="post-date"></p>
   <div id="post-content"></div>
 </div>
-<!-- LIGHTBOX HTML -->
-<div id="lightbox" class="lightbox">
-  <span class="close-btn">&times;</span>
-  <img id="lightbox-img">
-  <button class="nav-btn left">&#10094;</button>
-  <button class="nav-btn right">&#10095;</button>
-</div>
-<div class="comment-section">
-  <h2>Yorumlar</h2>
 
-  <!-- Formspree ile yorum formu -->
- <form action="https://formspree.io/f/xldkonng" method="POST" id="comment-form">
-  <label for="name">Adınız:</label>
-  <input type="text" id="name" name="name" placeholder="Adınızı yazın" required>
-   <input type="text" id="subject" name="subject" placeholder="Postun Adını Yazınız." required>
-
-  <input type="hidden" name="email" value="yorum@gmail.com">
-
-  <label for="message">Yorumunuz:</label>
-  <textarea id="message" name="message" placeholder="Yorumunuzu yazın..." required></textarea>
-
-  <button type="submit">Yorumu Gönder</button>
-</form>
-
-<p id="form-status"></p>
-
+<!-- YORUM SİSTEMİ VS BURADA -->
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('comment-form');
-  const status = document.getElementById('form-status');
+// -----------------------------------------------------
+//  JSON'dan gelen "content" içine otomatik COPY EKLEYEN KOD
+// -----------------------------------------------------
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault(); // Sayfa yenilenmesin
+document.addEventListener("DOMContentLoaded", () => {
 
-    const data = new FormData(form);
+  const container = document.getElementById("post-content");
 
-    fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if(response.ok){
-        status.textContent = "Yorumunuz gönderildi! Teşekkürler.";
-        form.reset();
-      } else {
-        status.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
-      }
-    }).catch(err => {
-      status.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
-      console.error(err);
+  // post-content içine JSON’dan gelen HTML zaten eklenecek
+  // Şimdi o içerideki pre > code bloklarını bulalım
+  const codeBlocks = container.querySelectorAll("pre");
+
+  codeBlocks.forEach(pre => {
+    // wrapper oluştur
+    const wrap = document.createElement("div");
+    wrap.className = "code-wrapper";
+
+    // copy butonu
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "Copy";
+
+    // tıklayınca kopyala
+    btn.addEventListener("click", () => {
+      const code = pre.innerText;
+      navigator.clipboard.writeText(code);
+      alert("Kod kopyalandı!");
     });
+
+    // pre'yi wrapper içine yerleştir
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(pre);
+    wrap.appendChild(btn);
   });
+
 });
 </script>
 
 
+<!-- SİTE KODLARIN DEVAMI -->
 <script src="script.js"></script>
 </body>
 </html>
-<script>
-  
-
-</script>

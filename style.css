@@ -1059,3 +1059,109 @@ h6 span{
     border-radius: 8px;
     text-decoration: none;
 }
+.code-block {
+  position: relative;
+  margin: 20px 0;
+}
+
+pre {
+  background: #0d1117;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+}
+
+.copy-btn,
+.preview-btn {
+  position: absolute;
+  top: 10px;
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.copy-btn:hover,
+.preview-btn:hover {
+  background: #30363d;
+}
+
+.copy-btn {
+  right: 10px;
+}
+
+.preview-btn {
+  right: 80px;
+}
+.code-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.code-tabs button {
+    padding: 7px 12px;
+    background: #222;
+    color: #ccc;
+    border: 1px solid #444;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.code-tabs button:hover {
+    background: #333;
+}
+
+pre {
+    background: #0d1117;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+/* CSS */
+.code-group {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+.code-tabs {
+  display: flex;
+  background: #333;
+}
+.code-tabs button {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: #333;
+}
+.code-tabs button.active {
+  background: #4CAF50;
+}
+.copy-btn {
+  padding: 5px 10px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.code-block {
+  display: none;
+  padding: 10px;
+  background: #1e1e1e;
+  color: #dcdcdc;
+  overflow-x: auto;
+  font-family: monospace;
+}
+.code-block.active {
+  display: block;
+}
+

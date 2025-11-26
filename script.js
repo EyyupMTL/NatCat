@@ -287,3 +287,35 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lightbox) closeLightbox();
   });
 });
+// Kod bloklarına copy butonu ekle
+function addCopyButtons() {
+  const codeBlocks = document.querySelectorAll('.post-container pre code');
+
+  codeBlocks.forEach(codeBlock => {
+    const pre = codeBlock.parentNode;
+
+    // Zaten copy varsa ekleme
+    if(pre.querySelector('.copy-btn')) return;
+
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = 'Copy';
+    copyBtn.className = 'copy-btn';
+    copyBtn.style.cssText = 'position:absolute;top:5px;right:5px;padding:5px 10px;cursor:pointer;background:#4CAF50;color:white;border:none;border-radius:5px;';
+    
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = 'Copy', 1500);
+      });
+    });
+
+    // Pre’nin üstüne butonu ekle
+    pre.style.position = 'relative';
+    pre.insertBefore(copyBtn, pre.firstChild);
+  });
+}
+
+// Post yüklendikten sonra çağır
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(addCopyButtons, 500); // JSON yüklenip innerHTML eklenince çalışsın
+});

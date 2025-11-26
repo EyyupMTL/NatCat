@@ -68,6 +68,7 @@
     <button class="btn-small" onclick="addText()">Add Text</button>
     <button class="btn-small" onclick="addImage()">Add Image</button>
     <button class="btn-small" onclick="addButton()">Add Button</button>
+    <button class="btn-small" onclick="addCode()">Add Code</button>
 </div>
 <div id="contentPreview"></div>
 
@@ -174,6 +175,41 @@ function addButton() {
     }
 }
 
+function addCode() {
+    let language = prompt("Kod dili (html, css, js vb.):").toLowerCase();
+    if (!language) return;
+
+    let code = prompt("Kodu buraya yapıştır:");
+    if (!code) return;
+
+    code = code
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    // Kod bloğu
+    let block = document.createElement("div");
+    block.innerHTML = `
+<pre><code class="language-${language}">
+${code}
+</code></pre>
+<button class="copy-btn">Copy</button>
+<br>
+    `;
+
+    document.getElementById("contentPreview").appendChild(block);
+
+    // Copy butonu
+    const btn = block.querySelector(".copy-btn");
+    const codeElem = block.querySelector("code");
+    btn.addEventListener("click", () => {
+        navigator.clipboard.writeText(codeElem.textContent).then(() => {
+            btn.textContent = "Copied!";
+            setTimeout(() => btn.textContent = "Copy", 1500);
+        });
+    });
+}
+
+
 function generateJSON() {
     let coverName = document.getElementById("cover").value;
     let coverFull = buildAssetPath(coverName,"image");
@@ -215,14 +251,12 @@ function loadJSON() {
         document.getElementById("author").value = data.author || "";
         document.getElementById("summary").value = data.summary || "";
 
-        // cover adını parse etmek için
         if(data.cover){
-            let c = data.cover.split("/").pop(); // ee2.png
+            let c = data.cover.split("/").pop();
             let name = c.split(".")[0];
             document.getElementById("cover").value = name;
         }
 
-        // link id parse
         if(data.link){
             let idMatch = data.link.match(/id=(\d+)/);
             if(idMatch) document.getElementById("link").value = idMatch[1];
