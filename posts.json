@@ -78,6 +78,17 @@
   "content": "<p>Tarayıcıdan Doom Oyna</p>\n<img src=\"assets/d1.png\" class=\"game-img\">\n<img src=\"assets/d2.png\" class=\"game-img\">\n<img src=\"assets/d3.png\" class=\"game-img\">\n<img src=\"assets/d4.png\" class=\"game-img\">\n<img src=\"assets/d5.png\" class=\"game-img\">\n<a href=\"https://yurkagon.github.io/Doom-Nukem-CSS/\" class=\"content-button\">Doom Oyna</a>",
   "link": "post.html?id=7",
   "linkText": "Tarayıcıdan Doom Oyna!"
+},
+{
+  "id": 9,
+  "title": "Slayt",
+  "date": "2025-11-28",
+  "author": "Eyyüp Mutlu",
+  "summary": "Slayt",
+  "cover": "assets/slayt.png",
+  "content": "<a href=\"assets/kureselisinma.pdf\" download=\"\" class=\"content-button\">Slaytı İndir</a>",
+  "link": "post.html?id=9",
+  "linkText": "slayt"
 }
 
 ]
