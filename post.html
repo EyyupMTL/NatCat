@@ -46,7 +46,7 @@
       <style>
         .natcat img {
           width: 70px;
-          height: auto;
+          height: 70px;
         }
       </style>
       <span>NatCat</span>
@@ -66,9 +66,81 @@
   <div id="post-content"></div>
 </div>
 
+<!-- LIGHTBOX HTML -->
+<div id="lightbox" class="lightbox">
+  <span class="close-btn">&times;</span>
+  <img id="lightbox-img">
+  <button class="nav-btn left">&#10094;</button>
+  <button class="nav-btn right">&#10095;</button>
+</div>
+
 <!-- YORUM SİSTEMİ VS BURADA -->
+<!-- ------------------ YORUM SİSTEMİ (SABİT MAIL) ------------------ -->
+
+<div class="comment-section">
+
+    <h2>Yorum Yap</h2>
+
+    <form action="https://formspree.io/f/xldkonng" method="POST" id="commentForm">
+
+        <label>İsim</label>
+        <input type="text" name="name" placeholder="Adınız" required>
+
+        <label>Yorum</label>
+        <textarea name="message" placeholder="Yorumunuzu yazın..." rows="5" required></textarea>
+
+        <!-- Gizli input: sabit mail ve post ID -->
+        <input type="hidden" name="email" value="yorum@gmail.com">
+        <input type="hidden" name="subject" value="Yorum">
+        <input type="hidden" name="post_id" id="post_id">
+
+        <button type="submit">Gönder</button>
+    </form>
+
+    <p id="formStatus" style="margin-top:10px;"></p>
+
+</div>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // URL’den post id’yi al
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get("id");
+
+    // Formspree'ye gönderilecek gizli input
+    document.getElementById("post_id").value = "Post ID: " + postId;
+
+    const form = document.getElementById("commentForm");
+    const status = document.getElementById("formStatus");
+
+    // AJAX ile gönderim
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        status.textContent = "Gönderiliyor...";
+
+        const data = new FormData(form);
+
+        const res = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+            status.textContent = "Yorum başarıyla gönderildi! 🎉";
+            form.reset();
+        } else {
+            status.textContent = "Gönderilirken hata oluştu. Tekrar deneyin!";
+        }
+    });
+
+});
+</script>
+
+<script>
+  
 // -----------------------------------------------------
 //  JSON'dan gelen "content" içine otomatik COPY EKLEYEN KOD
 // -----------------------------------------------------

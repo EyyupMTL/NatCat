@@ -26,29 +26,43 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // ---------- Arama ----------
-      const searchInput = document.getElementById("blog-search");
-      if(searchInput){
-        searchInput.addEventListener("input", () => {
-          const query = searchInput.value.toLowerCase();
-          const filtered = posts.filter(post => post.title.toLowerCase().includes(query));
-          blogGrid.innerHTML = "";
-          filtered.forEach(post => {
-            const card = document.createElement('div');
-            card.classList.add('blog-card');
-            card.innerHTML = `
-              <img src="${post.cover}" alt="${post.title}" class="cover">
-              <h3>${post.title}</h3>
-              <p>${post.summary}</p>
-              <a href="post.html?id=${post.id}">${post.linkText}</a>
-            `;
-            blogGrid.appendChild(card);
+const searchInput = document.getElementById("blog-search");
+const searchBtn = document.getElementById("search-btn");
 
-            card.addEventListener('click', () => {
-              window.location.href = `post.html?id=${post.id}`;
-            });
-          });
-        });
-      }
+function runSearch() {
+  const query = searchInput.value.toLowerCase();
+  const filtered = posts.filter(post => 
+    post.title.toLowerCase().includes(query)
+  );
+
+  blogGrid.innerHTML = "";
+  filtered.forEach(post => {
+    const card = document.createElement('div');
+    card.classList.add('blog-card');
+    card.innerHTML = `
+      <img src="${post.cover}" alt="${post.title}" class="cover">
+      <h3>${post.title}</h3>
+      <p>${post.summary}</p>
+      <a href="post.html?id=${post.id}">${post.linkText}</a>
+    `;
+    blogGrid.appendChild(card);
+
+    card.addEventListener('click', () => {
+      window.location.href = `post.html?id=${post.id}`;
+    });
+  });
+}
+
+if (searchInput) {
+  // Yazdıkça arama
+  searchInput.addEventListener("input", runSearch);
+}
+
+// Butonla arama (istersen)
+if (searchBtn) {
+  searchBtn.addEventListener("click", runSearch);
+}
+
 
       // ---------- Post Sayfası ----------
       const postContainer = document.querySelector('.post-container');
@@ -231,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/* ----------------- LIGHTBOX SİSTEMİ ------------------ */
+// ---------- LIGHTBOX (Resim Önizleme + Sağ Sol Buton) ----------
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
@@ -262,27 +276,30 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.style.display = "none";
   }
 
+  // Post içerik yüklendikten sonra resimleri bul
   setTimeout(() => {
-    const hidden = document.querySelectorAll("#hidden-images img");
-    images = Array.from(hidden);
+    const postImages = document.querySelectorAll(".post-container img");
+    images = Array.from(postImages);
 
-    const mainImage = document.getElementById("main-post-image");
-
-    if (mainImage && images.length > 0) {
-      mainImage.addEventListener("click", () => openLightbox(0));
-    }
+    images.forEach((img, i) => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => openLightbox(i));
+    });
   }, 500);
 
+  // Buton olayları
   rightBtn.addEventListener("click", showNext);
   leftBtn.addEventListener("click", showPrev);
   closeBtn.addEventListener("click", closeLightbox);
 
+  // ESC ile kapatma
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLightbox();
     if (e.key === "ArrowRight") showNext();
     if (e.key === "ArrowLeft") showPrev();
   });
 
+  // Lightbox boş alana tıklayınca kapanır
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeLightbox();
   });

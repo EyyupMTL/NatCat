@@ -1164,4 +1164,85 @@ pre {
 .code-block.active {
   display: block;
 }
+/* ------------------------------------------------ */
+/*           SEARCH BOX – DARK NEON STYLE           */
+/* ------------------------------------------------ */
+
+.searchBox {
+    position: relative;
+    width: 430px;
+    height: 42px;
+    background: #141822;
+    border-radius: 50px;
+    padding: 3px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+    border: 1px solid #222;
+}
+
+.searchBox:hover {
+    background: #1b2130;
+    border-color: #333;
+    box-shadow: 0 0 12px #ff005555;
+}
+
+.searchInput {
+    flex: 1;
+    height: 100%;
+    padding: 8px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.searchInput::placeholder {
+    color: #888;
+    transition: 0.3s;
+}
+
+.searchInput:focus::placeholder {
+    opacity: 0.3;
+}
+
+.searchButton {
+    width: 40px;
+    height: 40px;
+    background: #ff0055;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+.searchButton:hover {
+    background: #e0004c;
+    transform: scale(1.05);
+}
+
+.searchButton i {
+    font-size: 22px;
+}
+
+/* ----------- Responsive Uyum ----------- */
+@media (max-width: 600px) {
+    .searchBox {
+        width: 100%;
+        height: 45px;
+    }
+
+    .searchButton {
+        width: 38px;
+        height: 38px;
+    }
+}
 
