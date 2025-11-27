@@ -80,14 +80,47 @@
   "linkText": "Tarayıcıdan Doom Oyna!"
 },
 {
-  "id": 9,
-  "title": "Slayt",
+  "id": 8,
+  "title": "Eyyüp Mutlu Slayt",
   "date": "2025-11-28",
   "author": "Eyyüp Mutlu",
   "summary": "Slayt",
-  "cover": "assets/slayt.png",
+  "cover": "assets/eyp.jpg",
   "content": "<a href=\"assets/kureselisinma.pdf\" download=\"\" class=\"content-button\">Slaytı İndir</a>",
+  "link": "post.html?id=8",
+  "linkText": "slayt"
+},
+{
+  "id": 9,
+  "title": "Emir Kasatura Slayt",
+  "date": "2025-11-28",
+  "author": " Emir kasatura",
+  "summary": "Slayt",
+  "cover": "assets/emir.jpg",
+  "content": "<a href=\"assets/emir.pdf\" download=\"\" class=\"content-button\">Slaytı İndir</a>",
   "link": "post.html?id=9",
+  "linkText": "slayt"
+},
+{
+  "id": 10,
+  "title": "Berkcan Balta Slayt",
+  "date": "2025-11-28",
+  "author": " Berkcan Balta",
+  "summary": "Slayt",
+  "cover": "assets/berkcan.jpg",
+  "content": "<a href=\"assets/berkcan.pdf\" download=\"\" class=\"content-button\">Slaytı İndir</a>",
+  "link": "post.html?id=10",
+  "linkText": "slayt"
+},
+{
+  "id": 11,
+  "title": " ibrahim Slayt",
+  "date": "2025-11-28",
+  "author": "ibrahim",
+  "summary": "Slayt",
+  "cover": "assets/ibrahim.jpg",
+  "content": "<a href=\"assets/ibrahim.pdf\" download=\"\" class=\"content-button\">Slaytı İndir</a>",
+  "link": "post.html?id=11",
   "linkText": "slayt"
 }
 
